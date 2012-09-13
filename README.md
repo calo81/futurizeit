@@ -1,7 +1,7 @@
 (just in JRuby) This gem allows to execute Ruby methods in background futures, calling the future's get only when some method of the returned object is needed.
 
 This is an example from the specs included in the source code:
-
+```ruby
 class Futurized
   def do_something_long
     sleep 3
@@ -28,6 +28,6 @@ end
     end_time = Time.now.sec
     (end_time - start_time).should < 4
   end
-  
+```
   
   You can see how it works. We futurize the method we want to be asynchrnous and then, just when we need the value (when we call value.to_s in the example) internally the future.get is called. This allow independent methods to be executed in parallel transparently, blocking, if needed as if the background task hasn't yet finalized, only when accessing the values
